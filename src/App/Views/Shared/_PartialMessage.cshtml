@@ -1,0 +1,32 @@
+@using System.Text.Json
+
+@if (TempData.ContainsKey("message"))
+{
+    var json = TempData.Where(w => w.Key.Equals("message")).Select(s => s.Value is not null ? s.Value.ToString() : "").First();
+
+    if (json is not null)
+    {
+        var message = JsonSerializer.Deserialize<MessageVM>(json);
+        
+        if (message is not null)
+        {
+            if (message.Type.Equals(MessageType.Error))
+            {
+                <div class="alert alert-warning mt-3 alert-dismissible fade show" role="alert">
+                    @Html.Raw(message.Text)
+                    <button class="btn-close" type="button" data-bs-dismiss="alert">
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-success mt-3 alert-dismissible fade show" role="alert">
+                    @Html.Raw(message.Text)
+                    <button class="btn-close" type="button" data-bs-dismiss="alert">
+                    </button>
+                </div>
+            }
+        }
+    }
+
+}

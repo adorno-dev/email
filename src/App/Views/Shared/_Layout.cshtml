@@ -1,0 +1,39 @@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/lib/bootstrap5/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/bootstrap-icons/fonts/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Email Sender :: @ViewBag.Subtitle</title>
+</head>
+<body style="padding-bottom: 80px" class="mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar" href="/">Users Control</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Main</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-2">
+        <partial name="_PartialMessage" />
+        @RenderBody()
+    </div>
+    <div class="text-light bg-dark p-3 fixed-bottom text-center">
+        Users Control &copy; @DateTime.Now.Year.ToString() <br />
+        All rights reserved.
+    </div>
+    <script src="/lib/bootstrap5/dist/js/bootstrap.js"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>
